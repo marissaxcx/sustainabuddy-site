@@ -1,0 +1,10 @@
+/* Page-level spacing */
+#root {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* helper classes extending index.css theme */
+.spaced { margin-top: 1.25rem; }
+.center { text-align: center; }
