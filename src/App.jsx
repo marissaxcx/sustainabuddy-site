@@ -73,6 +73,7 @@ function App() {
         <div className="cta">
           <a className="btn btn-primary" href="#donate">Donate</a>
           <a className="btn btn-ghost" href="#subscribe">Join the mailing list</a>
+          <a className="btn btn-ghost" href="mailto:marissag383@gmail.com?subject=SustainaBuddy%20contact">Contact Marissa</a>
         </div>
       </header>
 
