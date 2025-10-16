@@ -69,7 +69,7 @@ function App() {
       <main className="site">
       <header className="hero">
         <h1 className="hero-title">SustainaBuddy</h1>
-        <p>Adopt a playful sea‑buddy and build everyday eco habits. Track actions, earn badges, and celebrate progress with friends. <span className="pill pill-iridescent" style={{marginLeft: '0.4rem'}}>Coming soon</span></p>
+        <p>Adopt a playful sea-buddy and build everyday eco habits. Track actions, earn badges, and celebrate progress with friends. <span className="pill pill-iridescent" style={{marginLeft: '0.4rem'}}>Coming soon</span></p>
         <div className="cta">
           <a className="btn btn-primary" href="#donate">Donate</a>
           <a className="btn btn-ghost" href="#subscribe">Join the mailing list</a>
@@ -80,7 +80,7 @@ function App() {
       <section className="grid">
         <div className="col-6">
           <div className="glass card" id="donate">
-            <h2 className="section-title">Support Sustaina‑buddy</h2>
+            <h2 className="section-title">Support SustainaBuddy</h2>
             <p className="muted">Your donation helps us build tools that make sustainable choices easy.</p>
             <div className="field">
               <label htmlFor="amount">Amount (USD)</label>
@@ -127,7 +127,7 @@ function App() {
         <div className="col-6">
           <div className="glass card">
             <h2 className="section-title">SustainaBuddy</h2>
-            <p className="muted">SustainaBuddy helps you build sustainable habits with a playful sea‑buddy. Log daily eco actions, earn badges, keep streaks, and share your progress with friends. Private by design — use Sign in with Apple to sync without passwords.</p>
+            <p className="muted">SustainaBuddy helps you build sustainable habits with a playful sea-buddy. Log daily eco actions, earn badges, keep streaks, and share your progress with friends. Private by design — use Sign in with Apple to sync without passwords.</p>
           </div>
         </div>
 
@@ -213,14 +213,14 @@ function App() {
 
               {activeTab === 'Overview' && (
                 <div className="tab-panel" role="tabpanel" id={`panel-${toSlug('Overview')}`} aria-labelledby={`tab-${toSlug('Overview')}`}>
-                  <p className="muted">Adopt your sea‑buddy, choose simple eco actions, and build habits that stick. Track what you do, grow your buddy, and celebrate milestones — all while keeping your data private with Sign in with Apple.</p>
+                  <p className="muted">Adopt your sea-buddy, choose simple eco actions, and build habits that stick. Track what you do, grow your buddy, and celebrate milestones — all while keeping your data private with Sign in with Apple.</p>
                 </div>
               )}
 
               {activeTab === 'Features' && (
                 <div className="tab-panel" role="tabpanel" id={`panel-${toSlug('Features')}`} aria-labelledby={`tab-${toSlug('Features')}`}>
                   <ul>
-                    <li>Adopt and customize your sea‑buddy</li>
+                    <li>Adopt and customize your sea-buddy</li>
                     <li>Daily eco actions with streaks and badges</li>
                     <li>Smart suggestions to reduce waste and save energy</li>
                     <li>Friendly challenges and progress sharing</li>
