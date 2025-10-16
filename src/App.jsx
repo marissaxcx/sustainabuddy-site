@@ -68,8 +68,8 @@ function App() {
       <div className="bg-gif" aria-hidden="true" />
       <main className="site">
       <header className="hero">
-        <h1 className="hero-title">Sustaina‑buddy</h1>
-        <p>Build sustainable habits with a friendly nudge. <span className="pill pill-iridescent" style={{marginLeft: '0.4rem'}}>Coming soon</span></p>
+        <h1 className="hero-title">SustainaBuddy</h1>
+        <p>Adopt a playful sea‑buddy and build everyday eco habits. Track actions, earn badges, and celebrate progress with friends. <span className="pill pill-iridescent" style={{marginLeft: '0.4rem'}}>Coming soon</span></p>
         <div className="cta">
           <a className="btn btn-primary" href="#donate">Donate</a>
           <a className="btn btn-ghost" href="#subscribe">Join the mailing list</a>
@@ -126,7 +126,7 @@ function App() {
         <div className="col-6">
           <div className="glass card">
             <h2 className="section-title">SustainaBuddy</h2>
-            <p className="muted">SustainaBuddy is an iOS app built with SwiftUI that gamifies sustainable living. Care for your sea‑creature buddy, track eco activities, and share progress with friends — now with Sign in with Apple integration.</p>
+            <p className="muted">SustainaBuddy helps you build sustainable habits with a playful sea‑buddy. Log daily eco actions, earn badges, keep streaks, and share your progress with friends. Private by design — use Sign in with Apple to sync without passwords.</p>
           </div>
         </div>
 
@@ -212,18 +212,18 @@ function App() {
 
               {activeTab === 'Overview' && (
                 <div className="tab-panel" role="tabpanel" id={`panel-${toSlug('Overview')}`} aria-labelledby={`tab-${toSlug('Overview')}`}>
-                  <p className="muted">SustainaBuddy is an iOS app built with SwiftUI that gamifies sustainable living. Care for your sea‑creature buddy, track eco activities, and share progress with friends — now with Sign in with Apple integration.</p>
+                  <p className="muted">Adopt your sea‑buddy, choose simple eco actions, and build habits that stick. Track what you do, grow your buddy, and celebrate milestones — all while keeping your data private with Sign in with Apple.</p>
                 </div>
               )}
 
               {activeTab === 'Features' && (
                 <div className="tab-panel" role="tabpanel" id={`panel-${toSlug('Features')}`} aria-labelledby={`tab-${toSlug('Features')}`}>
                   <ul>
-                    <li>Marine tracker and animal profiles</li>
-                    <li>Tamagotchi‑style buddy care and customization</li>
-                    <li>Eco footprint and dining suggestions</li>
-                    <li>Social challenges and achievements</li>
-                    <li>Real Sign in with Apple (AuthenticationServices)</li>
+                    <li>Adopt and customize your sea‑buddy</li>
+                    <li>Daily eco actions with streaks and badges</li>
+                    <li>Smart suggestions to reduce waste and save energy</li>
+                    <li>Friendly challenges and progress sharing</li>
+                    <li>Private Sign in with Apple — no passwords</li>
                   </ul>
                 </div>
               )}
@@ -231,9 +231,9 @@ function App() {
               {activeTab === 'Requirements' && (
                 <div className="tab-panel" role="tabpanel" id={`panel-${toSlug('Requirements')}`} aria-labelledby={`tab-${toSlug('Requirements')}`}>
                   <ul>
-                    <li>iPhone running iOS 17 or later</li>
+                    <li>iPhone (iOS 17 or later)</li>
                   </ul>
-                  <p className="muted">No development tools needed — just install and use the app.</p>
+                  <p className="muted">Just install and start playing — Sign in with Apple optional for sync.</p>
                 </div>
               )}
 
