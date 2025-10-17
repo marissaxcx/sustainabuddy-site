@@ -1,13 +1,11 @@
 import { useMemo, useState, useEffect } from 'react'
 import './App.css'
-import { donationLink, mailingListAction, betaInquiryAction } from './config.js'
+import { donationLink, contactFormAction } from './config.js'
 
 function App() {
   const [donationAmount, setDonationAmount] = useState('25')
-  const [subscribed, setSubscribed] = useState(false)
-  const [betaSent, setBetaSent] = useState(false)
   const [activeTab, setActiveTab] = useState('Overview')
-  const tabs = ['Overview', 'Features', 'Requirements', 'Roadmap']
+  const tabs = ['Overview', 'Features', 'Requirements', 'Roadmap', 'Contact']
   const toSlug = (s) => s.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
 
   useEffect(() => {
@@ -37,31 +35,8 @@ function App() {
     }
   }, [donationLink, donationAmount])
 
-  function handleSubscribe(e) {
-    e.preventDefault()
-    const form = new FormData(e.currentTarget)
-    const payload = Object.fromEntries(form.entries())
-    try {
-      const existing = JSON.parse(localStorage.getItem('sustainabuddy:list') || '[]')
-      existing.push({ ...payload, ts: Date.now() })
-      localStorage.setItem('sustainabuddy:list', JSON.stringify(existing))
-      setSubscribed(true)
-      e.currentTarget.reset()
-    } catch {}
-  }
-
-  function handleBetaInquiry(e) {
-    e.preventDefault()
-    const form = new FormData(e.currentTarget)
-    const payload = Object.fromEntries(form.entries())
-    try {
-      const existing = JSON.parse(localStorage.getItem('sustainabuddy:beta') || '[]')
-      existing.push({ ...payload, ts: Date.now() })
-      localStorage.setItem('sustainabuddy:beta', JSON.stringify(existing))
-      setBetaSent(true)
-      e.currentTarget.reset()
-    } catch {}
-  }
+  // Removed legacy subscribe/beta handlers to keep one contact form only
+  /* removed legacy handlers: subscribe and beta inquiry */
 
   return (
     <>
@@ -71,14 +46,13 @@ function App() {
         <h1 className="hero-title">SustainaBuddy</h1>
         <p>Adopt a playful sea-buddy and build everyday eco habits. Track actions, earn badges, and celebrate progress with friends. <span className="pill pill-iridescent" style={{marginLeft: '0.4rem'}}>Coming soon</span></p>
         <div className="cta">
-          <a className="btn btn-primary" href="#donate">Donate</a>
-          <a className="btn btn-ghost" href="#subscribe">Join the mailing list</a>
-          <a className="btn btn-ghost" href="mailto:marissag383@gmail.com?subject=SustainaBuddy%20developer%20contact">Contact the developer</a>
+          <a className="btn btn-primary" href="#contact">Contact the developer</a>
+          <a className="btn btn-ghost" href="#donate">Donate</a>
         </div>
       </header>
 
       <section className="grid">
-        <div className="col-6">
+        <div className="col-12">
           <div className="glass card" id="donate">
             <h2 className="section-title">Support SustainaBuddy</h2>
             <p className="muted">Your donation helps us build tools that make sustainable choices easy.</p>
@@ -92,35 +66,6 @@ function App() {
             </div>
           </div>
         </div>
-
-        <div className="col-6">
-          <div className="glass card" id="subscribe">
-            <h2 className="section-title">Join the mailing list</h2>
-            <p className="muted">Get occasional updates about features, tips, and ways to help.</p>
-            {subscribed ? (
-              <div className="muted">Thanks for subscribing! Check your inbox for a welcome note.</div>
-            ) : (
-              <form onSubmit={mailingListAction ? undefined : handleSubscribe} action={mailingListAction || undefined} method={mailingListAction ? 'POST' : undefined}>
-                <div className="field">
-                  <label htmlFor="name">Name</label>
-                  <input id="name" name="name" type="text" placeholder="Alex" required />
-                </div>
-                <div className="field">
-                  <label htmlFor="email">Email</label>
-                  <input id="email" name="email" type="email" placeholder="alex@email.com" required />
-                </div>
-                {mailingListAction && (
-                  <>
-                    <input type="hidden" name="_subject" value="Sustaina-buddy: Mailing List Subscription" />
-                    <input type="hidden" name="_captcha" value="false" />
-                    <input type="hidden" name="_next" value={typeof window !== 'undefined' ? new URL('thanks.html', window.location.href).toString() : '/thanks.html'} />
-                  </>
-                )}
-                <button className="btn btn-primary" type="submit">Subscribe</button>
-              </form>
-            )}
-          </div>
-        </div>
       </section>
 
       <section className="grid spaced">
@@ -128,39 +73,6 @@ function App() {
           <div className="glass card">
             <h2 className="section-title">SustainaBuddy</h2>
             <p className="muted">SustainaBuddy helps you build sustainable habits with a playful sea-buddy. Log daily eco actions, earn badges, keep streaks, and share your progress with friends. Private by design — use Sign in with Apple to sync without passwords.</p>
-          </div>
-        </div>
-
-        <div className="col-6">
-          <div className="glass card" id="beta">
-            <h2 className="section-title">Beta inquiry</h2>
-            <p className="muted">Interested in early access? Send us a note and we’ll reach out — coming soon.</p>
-            {betaSent ? (
-              <div className="muted">Thanks! We’ll be in touch when the beta opens.</div>
-            ) : (
-              <form onSubmit={betaInquiryAction ? undefined : handleBetaInquiry} action={betaInquiryAction || undefined} method={betaInquiryAction ? 'POST' : undefined}>
-                <div className="field">
-                  <label htmlFor="beta-name">Name</label>
-                  <input id="beta-name" name="name" type="text" placeholder="Alex" required />
-                </div>
-                <div className="field">
-                  <label htmlFor="beta-email">Email</label>
-                  <input id="beta-email" name="email" type="email" placeholder="alex@email.com" required />
-                </div>
-                <div className="field">
-                  <label htmlFor="beta-message">Message</label>
-                  <input id="beta-message" name="message" type="text" placeholder="Tell us about your use case" />
-                </div>
-                {betaInquiryAction && (
-                  <>
-                    <input type="hidden" name="_subject" value="Sustaina-buddy: Beta Inquiry" />
-                    <input type="hidden" name="_captcha" value="false" />
-                    <input type="hidden" name="_next" value={typeof window !== 'undefined' ? new URL('thanks.html', window.location.href).toString() : '/thanks.html'} />
-                  </>
-                )}
-                <button className="btn btn-primary" type="submit">Request beta</button>
-              </form>
-            )}
           </div>
         </div>
       </section>
@@ -238,8 +150,6 @@ function App() {
                 </div>
               )}
 
-
-
               {activeTab === 'Roadmap' && (
                 <div className="tab-panel" role="tabpanel" id={`panel-${toSlug('Roadmap')}`} aria-labelledby={`tab-${toSlug('Roadmap')}`}>
                   <ul>
@@ -247,6 +157,42 @@ function App() {
                     <li>More buddy species, outfits, and accessories</li>
                     <li>Community feed and richer social features</li>
                   </ul>
+                </div>
+              )}
+
+              {activeTab === 'Contact' && (
+                <div className="tab-panel" role="tabpanel" id={`panel-${toSlug('Contact')}`} aria-labelledby={`tab-${toSlug('Contact')}`}>
+                  <p className="muted">Reach out directly — happy to collaborate, answer questions, or chat about the roadmap.</p>
+                  <form action={contactFormAction} method="POST">
+                    <div className="field">
+                      <label htmlFor="contact-name">Name</label>
+                      <input id="contact-name" name="name" type="text" placeholder="Alex" required />
+                    </div>
+                    <div className="field">
+                      <label htmlFor="contact-email">Email</label>
+                      <input id="contact-email" name="email" type="email" placeholder="alex@email.com" required />
+                    </div>
+                    <div className="field">
+                      <label htmlFor="contact-topic">Topic</label>
+                      <select id="contact-topic" name="topic">
+                        <option value="General">General</option>
+                        <option value="Beta Inquiry">Beta Inquiry</option>
+                        <option value="Partnership">Partnership</option>
+                      </select>
+                    </div>
+                    <div className="field">
+                      <label htmlFor="contact-message">Message</label>
+                      <input id="contact-message" name="message" type="text" placeholder="How can we help?" required />
+                    </div>
+                    {/* FormSubmit options */}
+                    <input type="hidden" name="_subject" value="Sustaina-buddy: Developer Contact" />
+                    <input type="hidden" name="_captcha" value="false" />
+                    <input type="hidden" name="_next" value={typeof window !== 'undefined' ? new URL('thanks.html', window.location.href).toString() : '/thanks.html'} />
+                    {/* Honeypot to reduce spam */}
+                    <input type="text" name="_honey" style={{ display: 'none' }} />
+
+                    <button className="btn btn-primary" type="submit">Send message</button>
+                  </form>
                 </div>
               )}
             </div>
